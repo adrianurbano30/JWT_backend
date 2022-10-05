@@ -11,13 +11,8 @@ class PublicacionController extends Controller
 
     public function index()
     {
-
       $publicacion = Publicacion::latest()->get();
-
-      //Return  new PublicacionResource($publicacion);
-
       Return PublicacionResource::collection($publicacion);
-
     }
 
     public function store(Request $request)
