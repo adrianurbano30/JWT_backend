@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Publicacion;
 use App\Http\Resources\PublicacionResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublicacionController extends Controller
 {
@@ -18,24 +19,25 @@ class PublicacionController extends Controller
     public function store(Request $request)
     {
 
-        //$usuario = User::find($request->user_id->id);
+         $usuario= Auth::user();
+         $publicacion = $usuario->publicacion()->create([
+             'body'=>$request->publicacion_body
+         ]);
 
-        $usuario= Auth::user();
+         if ($request->hasfile('images0')) {
+            $img_publicacion_path='imagenes/publicaciones';
+            for ($i=0; $i < $request->array_size ; $i++) {
+                $fileIMG = $request->file('images'.$i);
+                $img_publicacion_unica=rand(0,138541351551616815).'_'.time().'-'.$fileIMG->getClientOriginalName();
+                $THEpath= $fileIMG->storeAs($img_publicacion_path,$img_publicacion_unica,'subidas_publicas');
 
-        $url="DIR/DONDE/ESTA/img/Qllega.png";
-
-        $publicacion = $usuario->publicacion()->create([
-            'body'=>$request->body
-        ]);
-        $publicacion->imagen()->create([
-            'url'=>$url
-        ]);
-
-        return response()->json(
-            [
-              'publicacion'=> $publicacion
-            ]
-        );
+                $img_publicacion_a_guardar=$THEpath;
+                $publicacion->imagen()->create([
+                  'url'=>$img_publicacion_a_guardar
+                ]);
+             }
+         }
+        return new PublicacionResource($publicacion);
     }
 
     public function show(Publicacion $publicacion)
