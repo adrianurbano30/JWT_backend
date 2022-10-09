@@ -23,7 +23,7 @@ class PublicacionController extends Controller
          $publicacion = $usuario->publicacion()->create([
              'body'=>$request->publicacion_body
          ]);
-
+         //UN CAMBIO MAS PARA PROBAR EL GIT IGNORE
          if ($request->hasfile('images0')) {
             $img_publicacion_path='imagenes/publicaciones';
             for ($i=0; $i < $request->array_size ; $i++) {
