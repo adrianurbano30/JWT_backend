@@ -41,10 +41,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 
     ////PUBLICACIONES///////////////////////////////
-    Route::get('get_publicaciones',[PublicacionController::class,'index']);
     Route::post('make_publicacion',[PublicacionController::class,'store']);
+    Route::post('actualizarPublicacion',[PublicacionController::class,'update']);
+    Route::delete('eliminar_post/{id}',[PublicacionController::class,'destroy']);
+    Route::get('get_publicaciones',[PublicacionController::class,'index']);
     Route::get('get_publicacion/{id}',[PublicacionController::class,'show']);
-    Route::delete('destroy_post/{id}',[PublicacionController::class,'index']);
     /////////////////////////////////////////
 
     //////////////IMAGENES/////////////////////////
