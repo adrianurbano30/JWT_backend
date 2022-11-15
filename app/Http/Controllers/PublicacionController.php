@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\File;
 
 class PublicacionController extends Controller
 {
-
     public function index()
     {
       $publicacion = Publicacion::latest()->get();
@@ -40,7 +39,6 @@ class PublicacionController extends Controller
          }
         return new PublicacionResource($publicacion);
     }
-
     public function update(Request $request)
     {
        $publicacion= Publicacion::find($request->publicacion_id);
@@ -90,10 +88,7 @@ class PublicacionController extends Controller
             }
          }
          $publicacion->delete();
-
-        // return response()->json([
-        //     'publicacion'=>$publicacion
-        // ]);
         return new PublicacionResource($publicacion);
     }
+
 }

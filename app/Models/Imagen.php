@@ -13,6 +13,18 @@ class Imagen extends Model
         'url'
     ];
 
+    public function likedBy(User $usuario){
+        return $this->likes->contains('user_id',$usuario->id);
+    }
+
+    public function likes(){
+        return $this->morphMany(Like::class,'likeable');
+    }
+
+    public function comentarios(){
+        return $this->morphMany(Comentario::class,'comentarioable');
+    }
+
     public function imageable(){
         return  $this->morphTo();
     }

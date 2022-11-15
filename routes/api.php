@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ComentarioController;
 
 
 
@@ -35,8 +37,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     /////GET USUARIO LOGEADO///////////////////
     Route::get('usuariolog',[AuthController::class,'getUsuarioAutenticado']);
-
-
     /////////////////////////////////////
 
 
@@ -47,6 +47,20 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('get_publicaciones',[PublicacionController::class,'index']);
     Route::get('get_publicacion/{id}',[PublicacionController::class,'show']);
     /////////////////////////////////////////
+
+    //LIKES///////////////////////////////////////
+    Route::post('make_like',[LikeController::class,'storeLikePost']);
+    Route::post('make_like_comentario',[LikeController::class,'storeLikeComment']);
+    /////////////////////////////////////////////
+
+    ///COMENTARIOS////////////////////////////////////
+    Route::post('make_comentario',[ComentarioController::class,'storeComentario']);
+    Route::post('response_comentario',[ComentarioController::class,'storeRespuestaComentario']);
+    Route::put('update_comentario/{id}',[ComentarioController::class,'updateComentario']);
+    Route::put('update_respuesta/{id}',[ComentarioController::class,'updateRespuestaComentario']);
+    Route::delete('delete_comentario/{id}',[ComentarioController::class,'destroyComentario']);
+    Route::delete('delete_respuesta/{id}',[ComentarioController::class,'destroyRespuesta']);
+    /////////////////////////////////////////////////
 
     //////////////IMAGENES/////////////////////////
     Route::get('get_imagen/{id}',[ImagenController::class,'show']);

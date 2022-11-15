@@ -22,6 +22,8 @@ class PublicacionResource extends JsonResource
          'body'=>$this->body,
          'Imagenes'=>ImageResource::collection($this->imagen),
          'user'=>new UserResource($this->user),
+         'Likes'=>LikeResource::collection($this->likes),
+         'Comentarios'=>ComentarioResource::collection($this->comentarios),
          'created_at'=>$this->created_at,
          'updated_at'=>$this->updated_at
        ];
