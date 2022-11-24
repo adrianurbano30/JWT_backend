@@ -115,4 +115,44 @@ class AuthController extends Controller
 
     }
 
+    public function checkEmail($email){
+
+        $usuario = User::select('*')->where('email',$email)->get();
+
+        if ($usuario->count()>0) {
+            return response()->json(
+                [
+                  'mensaje'=>'TRUE'
+                ]
+            );
+        }else{
+            return response()->json(
+                [
+                'mensaje' => 'FALSE'
+                ]
+            );
+        }
+    }
+
+    public function checkUsername($username){
+
+        $usuario = User::select('*')->where('username',$username)->get();
+        if ($usuario->count()>0) {
+            return response()->json(
+                [
+                  'mensaje'=>'TRUE'
+                ]
+            );
+        }else{
+            return response()->json(
+                [
+                  'mensaje' => 'FALSE'
+                ]
+            );
+        }
+
+    }
+
+
+
 }

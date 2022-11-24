@@ -24,43 +24,43 @@ class UserController extends Controller
         return User::find($user);
     }
 
-    public function checkEmail($email){
+    // public function checkEmail($email){
 
-        $usuario = User::select('*')->where('email',$email)->get();
+    //     $usuario = User::select('*')->where('email',$email)->get();
 
-        if ($usuario->count()>0) {
-            return response()->json(
-                [
-                  'mensaje'=>'TRUE'
-                ]
-            );
-        }else{
-            return response()->json(
-                [
-                'mensaje' => 'FALSE'
-                ]
-            );
-        }
-    }
+    //     if ($usuario->count()>0) {
+    //         return response()->json(
+    //             [
+    //               'mensaje'=>'TRUE'
+    //             ]
+    //         );
+    //     }else{
+    //         return response()->json(
+    //             [
+    //             'mensaje' => 'FALSE'
+    //             ]
+    //         );
+    //     }
+    // }
 
-    public function checkUsername($username){
+    // public function checkUsername($username){
 
-        $usuario = User::select('*')->where('username',$username)->get();
-        if ($usuario->count()>0) {
-            return response()->json(
-                [
-                  'mensaje'=>'TRUE'
-                ]
-            );
-        }else{
-            return response()->json(
-                [
-                  'mensaje' => 'FALSE'
-                ]
-            );
-        }
+    //     $usuario = User::select('*')->where('username',$username)->get();
+    //     if ($usuario->count()>0) {
+    //         return response()->json(
+    //             [
+    //               'mensaje'=>'TRUE'
+    //             ]
+    //         );
+    //     }else{
+    //         return response()->json(
+    //             [
+    //               'mensaje' => 'FALSE'
+    //             ]
+    //         );
+    //     }
 
-    }
+    // }
 
     public function update(Request $request, User $user)
     {

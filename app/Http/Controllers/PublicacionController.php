@@ -74,9 +74,10 @@ class PublicacionController extends Controller
 
        return new PublicacionResource($publicacion);
     }
-    public function show(Publicacion $publicacion)
+    public function show(Request $request)
     {
-        return Publicacion::finOrFail($publicacion->id);
+         $publicacion = Publicacion::find($request->id);
+         return new PublicacionResource($publicacion);
     }
     public function destroy(Request $request)
     {

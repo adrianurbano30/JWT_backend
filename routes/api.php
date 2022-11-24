@@ -17,10 +17,10 @@ Route::post('login',[AuthController::class,'login']);
 
 
 /////CHECKEO DE EXISTENCIA DE EMAIL EN LA BD///////////////
-Route::get('email_confirm/{data}',[UserController::class,'checkEmail']);
+Route::get('email_confirm/{data}',[AuthController::class,'checkEmail']);
 
 /////CHECKEO DE EXISTENCIA DE USERNAME EN LA BD///////////////
-Route::get('username_confirm/{data}',[UserController::class,'checkUsername']);
+Route::get('username_confirm/{data}',[AuthController::class,'checkUsername']);
 
 
 Route::group(['middleware' => ['jwt.verify']], function() {
