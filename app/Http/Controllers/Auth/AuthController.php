@@ -63,7 +63,7 @@ class AuthController extends Controller
         $user = Auth::user();
         return response()->json([
             'token'=> $token,
-            'user'=> $user,
+            'usuario'=> $user,
         ]);
 
     }
@@ -89,29 +89,31 @@ class AuthController extends Controller
             ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-         Auth::logout();
 
-         return response()->json([
-             'status' => 'success',
-             'message' => 'Sesión terminada',
-         ]);
         // $this->logHistory();
-        // try {
-        //     JWTAuth::invalidate(JWTAuth::getToken());
-        //     return response()->json([
-        //       'status' => 'success',
-        //       'msg' => 'You have successfully logged out.'
-        //     ]);
-        //   } catch (JWTException $e) {
-        //       JWTAuth::unsetToken();
-        //       // something went wrong tries to validate a invalid token
-        //       return response()->json([
-        //         'status' => 'error',
-        //         'msg' => 'Failed to logout, please try again.'
-        //     ]);
-        //   }
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken());
+            return response()->json([
+              'status' => 'hecho',
+              'msg' => 'haz cerrado sesion exitosamente.'
+            ]);
+          } catch (JWTException $e) {
+              JWTAuth::unsetToken();
+              // something went wrong tries to validate a invalid token
+              return response()->json([
+                'status' => 'error',
+                'msg' => 'Cierre de sesion fallida, Intenta de nuevo.'
+            ]);
+          }
+
+           //  Auth::logout();
+
+        //  return response()->json([
+        //      'status' => 'success',
+        //      'message' => 'Sesión terminada',
+        //  ]);
 
     }
 
