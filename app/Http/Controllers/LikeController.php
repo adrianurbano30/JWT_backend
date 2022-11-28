@@ -34,7 +34,7 @@ class LikeController extends Controller
              ->where('user_id',$usuario->id)
              ->delete();
 
-            return $publicacion->likes;
+            return 0;
          }
     }
 
