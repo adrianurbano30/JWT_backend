@@ -40,8 +40,6 @@ class LikeController extends Controller
 
     public function storeLikeComment(Request $request){
 
-
-
         $usuario=Auth::User();
         $comentario = Comentario::find($request->id);
         $likeComentario;
@@ -61,7 +59,7 @@ class LikeController extends Controller
             ->where('user_id',$usuario->id)
             ->delete();
 
-            return $comentario->likes;
+            return 0;
 
         }
 

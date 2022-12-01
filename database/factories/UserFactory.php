@@ -21,7 +21,7 @@ class UserFactory extends Factory
 
             'name' => fake()->name(),
             'lastname'=> fake()->lastname(),
-            'username'=> fake()->username(),
+            'username'=> fake()->unique()->username(),
             'foto_perfil'=>'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
