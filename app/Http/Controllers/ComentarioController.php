@@ -53,7 +53,6 @@ class ComentarioController extends Controller
     public function storeRespuestaComentario(Request $request){
 
         $usuarioAuth=Auth::user();
-        //$respuesta = json_encode($request->comentarios);
         $respuesta = $request->comentarios;
         $comentario = Comentario::find($request->id);
 
