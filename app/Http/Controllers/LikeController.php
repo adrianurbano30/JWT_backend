@@ -17,7 +17,7 @@ class LikeController extends Controller
 
         $usuario=Auth::User();
         $publicacion=Publicacion::find($request[0]);
-        $like;
+        //$like;
 
 
         if (!$publicacion->likedBy($usuario)) {

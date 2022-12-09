@@ -8,9 +8,7 @@ use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ComentarioController;
-
-
-
+use App\Models\Comentario;
 
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
@@ -56,6 +54,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     ///COMENTARIOS////////////////////////////////////
     Route::post('make_comentario',[ComentarioController::class,'storeComentario']);
     Route::post('response_comentario',[ComentarioController::class,'storeRespuestaComentario']);
+    Route::post('comentarioImagen',[ComentarioController::class,'comentarioImagen']);
     Route::put('update_comentario/{id}',[ComentarioController::class,'updateComentario']);
     Route::put('update_respuesta/{id}',[ComentarioController::class,'updateRespuestaComentario']);
     Route::delete('delete_comentario/{id}',[ComentarioController::class,'destroyComentario']);

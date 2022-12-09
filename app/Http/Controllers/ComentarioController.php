@@ -6,6 +6,7 @@ use App\Http\Resources\ComentarioResource;
 use Illuminate\Http\Request;
 use App\Models\Publicacion;
 use App\Models\Comentario;
+use App\Models\Imagen;
 
 class ComentarioController extends Controller
 {
@@ -15,7 +16,7 @@ class ComentarioController extends Controller
         $publicacion=Publicacion::find($request->publicacion_id);
         $comentario=$request->comentario;
         $usuarioAuth=Auth::user();
-        $comment;
+       // $comment;
 
         if ($usuarioAuth->id==$usuario) {
             $comment = $publicacion->comentarios()->create([
@@ -49,6 +50,29 @@ class ComentarioController extends Controller
 
         return $request->id;
     }
+
+    //COMENTARIO IMAGENES///////////
+
+    public function comentarioImagen(Request $request){
+
+        $usuario=$request->usuario_id;
+        $imagen=Imagen::find($request->imagen_id);
+        $comentario=$request->comentario;
+        $usuarioAuth=Auth::user();
+
+        if ($usuarioAuth->id==$usuario) {
+            $comment = $imagen->comentarios()->create([
+                'user_id'=>$usuario,
+                'comentarios'=>$comentario,
+                'editado'=>false
+            ]);
+        }
+        return new ComentarioResource($comment);
+
+    }
+
+    ///END COMENTARIO IMAGENES/////
+
     //RESPUESTAS COMENTARIO/////
     public function storeRespuestaComentario(Request $request){
 

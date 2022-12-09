@@ -48,7 +48,7 @@ class PublicacionController extends Controller
        $publicacion->update([
         'body'=>$request->publicacion_body
        ]);
-        $img;
+        //$img;
        if ($request->img2delete) {
          for ($i=0; $i < $request->array_size2; $i++) {
               $img = json_decode($request->img2delete);

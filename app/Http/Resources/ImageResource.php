@@ -17,7 +17,8 @@ class ImageResource extends JsonResource
         //return parent::toArray($request);
         return [
             'id'=>$this->id,
-            'url'=>$this->url
+            'url'=>$this->url,
+            'Comentarios'=>ComentarioResource::collection($this->comentarios),
         ];
     }
 }
