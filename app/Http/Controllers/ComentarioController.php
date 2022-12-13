@@ -10,6 +10,7 @@ use App\Models\Imagen;
 
 class ComentarioController extends Controller
 {
+    //COMENTARIO PUBLICACION//
     public function storeComentario(Request $request){
 
         $usuario=$request->usuario_id;
@@ -50,9 +51,8 @@ class ComentarioController extends Controller
 
         return $request->id;
     }
-
+    //END COMENTARIO PUBLICACION////
     //COMENTARIO IMAGENES///////////
-
     public function comentarioImagen(Request $request){
 
         $usuario=$request->usuario_id;
@@ -70,9 +70,30 @@ class ComentarioController extends Controller
         return new ComentarioResource($comment);
 
     }
+    public function updateComentarioImagen(Request $request){
 
+        $comentario_img=Comentario::find($request->id);
+        $usuarioAuth=Auth::user();
+        //$usuario=$request->User;
+
+        $comentario_img->update([
+            'user_id'=>$usuarioAuth->id,
+            'comentarios'=>$request->comentarios,
+            'editado'=>true,
+        ]);
+
+        return new ComentarioResource($comentario_img);
+
+    }
+    public function destroyComentarioImg(Request $request){
+
+        $comentario= Comentario::find($request->id);
+
+        $comentario->delete();
+
+        return $request->id;
+    }
     ///END COMENTARIO IMAGENES/////
-
     //RESPUESTAS COMENTARIO/////
     public function storeRespuestaComentario(Request $request){
 

@@ -49,6 +49,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //LIKES///////////////////////////////////////
     Route::post('make_like',[LikeController::class,'storeLikePost']);
     Route::post('make_like_comentario',[LikeController::class,'storeLikeComment']);
+    Route::post('make_like_img',[LikeController::class,'storeLikeImg']);
     /////////////////////////////////////////////
 
     ///COMENTARIOS////////////////////////////////////
@@ -57,8 +58,10 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('comentarioImagen',[ComentarioController::class,'comentarioImagen']);
     Route::put('update_comentario/{id}',[ComentarioController::class,'updateComentario']);
     Route::put('update_respuesta/{id}',[ComentarioController::class,'updateRespuestaComentario']);
+    Route::put('update_comentario_imagen/{id}',[ComentarioController::class,'updateComentarioImagen']);
     Route::delete('delete_comentario/{id}',[ComentarioController::class,'destroyComentario']);
     Route::delete('delete_respuesta/{id}',[ComentarioController::class,'destroyRespuesta']);
+    Route::delete('delete_comentario_img/{id}',[ComentarioController::class,'destroyComentarioImg']);
     /////////////////////////////////////////////////
 
     //////////////IMAGENES/////////////////////////

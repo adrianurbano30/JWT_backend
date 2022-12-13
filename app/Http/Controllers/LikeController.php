@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\PublicacionResource;
 use App\Http\Resources\LikeResource;
 use Illuminate\Http\Request;
 use App\Models\Publicacion;
-use App\Models\Like;
 use App\Models\Comentario;
+use App\Models\Imagen;
 
 class LikeController extends Controller
 {
@@ -42,7 +41,7 @@ class LikeController extends Controller
 
         $usuario=Auth::User();
         $comentario = Comentario::find($request->id);
-        $likeComentario;
+        //$likeComentario;
 
         if (!$comentario->likedBy($usuario)) {
 
@@ -61,6 +60,28 @@ class LikeController extends Controller
 
             return 0;
 
+        }
+
+    }
+
+    public function storeLikeImg(Request $request){
+        $usuario=Auth::User();
+        $imagen = Imagen::find($request->id);
+
+        if (!$imagen->likedBy($usuario)) {
+
+            $likeImagen = $imagen
+                         ->likes()
+                         ->create([
+                            'user_id'=>$usuario->id
+                         ]);
+            return new LikeResource($likeImagen);
+
+        }else{
+            $imagen->likes()
+            ->where('user_id',$usuario->id)
+            ->delete();
+            return 0;
         }
 
     }

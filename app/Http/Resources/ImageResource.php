@@ -19,6 +19,7 @@ class ImageResource extends JsonResource
             'id'=>$this->id,
             'url'=>$this->url,
             'Comentarios'=>ComentarioResource::collection($this->comentarios),
+            'Likes'=>LikeResource::collection($this->likes),
         ];
     }
 }
